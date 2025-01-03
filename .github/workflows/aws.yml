@@ -1,0 +1,41 @@
+name: Deploy to Amazon S3
+
+on:
+  push:
+    branches: [ "main" ]
+
+env:
+  AWS_REGION: us-east-1
+  IAM_ROLE: arn:aws:iam::985539771452:role/womensummit.peru.2025
+  S3_BUCKET: womensummit.peru.2025
+  DISTRIBUTION: E2L5JUJR4TOTS4
+
+permissions:
+  id-token: write # This is required for requesting the JWT
+  contents: read
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+      
+    - name: Configure AWS credentials from roles
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+        role-to-assume: ${{ env.IAM_ROLE }}
+        aws-region: ${{ env.AWS_REGION}}
+        role-session-name: GitHub_to_AWS_via_FederatedOIDC
+    - name: Sts GetCallerIdentity
+      run: |
+        aws sts get-caller-identity
+    - name: Copy files to the website with the AWS CLI
+      run: |
+        aws s3 sync . "s3://${{ env.S3_BUCKET }}" --delete --exclude '.git/*' --exclude '.github/*' 
+    - name: Create cloudfront invalidation
+      run: |
+        aws cloudfront create-invalidation --distribution-id ${{ env.DISTRIBUTION }} --paths "/*"
