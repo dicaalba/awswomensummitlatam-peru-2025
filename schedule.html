@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AWSome Women Community Summit</title>
+    <!-- Stylesheets -->
+    <link href="css/bootstrap.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
+    <link href="css/sessionize.css" rel="stylesheet" />
+    <link href="css/responsive.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div>
+      <header class="main-header header-style-two alternate">
+        <div class="header-top">
+          <div class="auto-container">
+            <div class="clearfix">
+              <div class="top-left pull-left">
+                <div class="text">Día Internacional de la Mujer 2025</div>
+              </div>
+              <div class="pull-right">
+                <ul class="social-links">
+                  <li>
+                    <a href="https://www.instagram.com/awsomewomencommunity"><span class="fab fa-instagram"></span></a>
+                  </li>
+                  <li>
+                    <a href="https://twitter.com/awsome_women"><span class="fab fa-twitter"></span></a>
+                  </li>
+                  <li>
+                    <a href="https://www.linkedin.com/company/awsome-women-community-summit/"
+                      ><span class="fab fa-linkedin-in"></span
+                    ></a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="main-box">
+          <div class="auto-container clearfix">
+            <div class="logo-box">
+              <div class="logo">
+                <a href="#"><img src="images/logo-2.png" alt="" title="" /></a>
+              </div>
+            </div>
+
+            <!--Nav Box-->
+            <div class="nav-outer clearfix">
+              <!--Mobile Navigation Toggler-->
+              <div class="mobile-nav-toggler"><span class="icon flaticon-menu"></span></div>
+              <!-- Main Menu -->
+              <nav class="main-menu navbar-expand-md navbar-light">
+                <div class="navbar-header">
+                  <!-- Togg le Button -->
+                  <button
+                    class="navbar-toggler"
+                    type="button"
+                    data-toggle="collapse"
+                    data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+                  >
+                    <span class="icon flaticon-menu-button"></span>
+                  </button>
+                </div>
+
+                <div class="collapse navbar-collapse clearfix" id="navbarSupportedContent">
+                  <ul class="navigation clearfix">
+                    <li translate="no" class="current dropdown"><a href="/">Home</a></li>
+                    <li translate="no" class="dropdown"><a href="#">Schedule</a></li>
+                    <li translate="no" class="dropdown"><a href="/">Sponsors</a></li>
+                  </ul>
+                </div>
+              </nav>
+              <!-- Main Menu End-->
+              <!-- Outer box -->
+              <div class="outer-box">
+                <div class="search-box-btn"><span class="flaticon-search"></span></div>
+                <div class="btn-box">
+                  <a
+                    href="https://www.eventbrite.com.ar/e/awsome-women-community-summit-latam-2024-tickets-810503938097"
+                    class="theme-btn btn-style-one"
+                    ><span class="btn-title">Entradas</span></a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mobile Menu  -->
+        <div class="mobile-menu">
+          <div class="menu-backdrop"></div>
+          <div class="close-btn"><span class="icon flaticon-cancel-1"></span></div>
+          <nav class="menu-box">
+            <div class="nav-logo">
+              <a href=""><img src="images/logo-2.png" alt="" title="" /></a>
+            </div>
+            <ul class="navigation clearfix">
+              <!--Keep This Empty / Menu will come through Javascript-->
+            </ul>
+          </nav>
+        </div>
+      </header>
+    </div>
+    <div class="schedule-box">
+      <div
+        className="sessionize-loader"
+        data-sessionize-load-url="https://sessionize.com/api/v2/9cg97ldh/view/GridSmart?under=True"
+      >
+        <div className="sz-spinner"></div>
+      </div>
+    </div>
+  </body>
+
+  <script>
+    async function init() {
+      const elements = document.querySelectorAll('[data-sessionize-load-url]');
+
+      for (const element of elements) {
+        const file = element.getAttribute('data-sessionize-load-url');
+
+        if (file) {
+          try {
+            const response = await fetch(file);
+            if (!response.ok) {
+              throw new Error('Error en la carga del contenido de Sessionize');
+            }
+            const responseText = await response.text();
+            element.innerHTML = responseText;
+            element.removeAttribute('data-sessionize-load-url');
+          } catch (error) {
+            console.error(error);
+          }
+        }
+      }
+    }
+    init();
+  </script>
+</html>

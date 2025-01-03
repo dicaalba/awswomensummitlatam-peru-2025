@@ -1,0 +1,9 @@
+.schedule-box {
+  margin-top: 130px;
+}
+
+@media (min-width: 768px) {
+  .schedule-box {
+    margin-top: 170px;
+  }
+}
